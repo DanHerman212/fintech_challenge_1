@@ -76,11 +76,13 @@ loan = {
 future_value = loan.get("future_value")
 # variable to hold remaining months of loan
 remaining_months = loan.get("remaining_months")
+# variable to hold cost of individual loan
+loan_price = loan.get("loan_price")
 
 # Print each variable.
 print(future_value)
 print(remaining_months)
-
+print(loan_price)
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
 # Use a minimum required return of 20% as the discount rate.
@@ -127,12 +129,27 @@ new_loan = {
 # @TODO: Define a new function that will be used to calculate present value.
 #    This function should include parameters for `future_value`, `remaining_months`, and the `annual_discount_rate`
 #    The function should return the `present_value` for the loan.
-# YOUR CODE HERE!
+
+# function name = calculate_pv, parameter (typical PV variables)
+def calculate_pv(future_value, remaining_months, annual_discount_rate):
+#return value is the present value formula 
+    present_value = future_value / (1+ annual_discount_rate/12) ** remaining_months
+    return present_value
 
 
 # @TODO: Use the function to calculate the present value of the new loan given below.
 #    Use an `annual_discount_rate` of 0.2 for this new loan calculation.
-# YOUR CODE HERE!
+
+# variables to calculate PV
+future_value = new_loan.get("future_value")
+remaining_months = new_loan.get("remaining_months")
+repayment_interval = new_loan.get("repayment_interval")
+loan_price = new_loan.get("loan_price")
+annual_discount_rate = .2
+
+# function reuse, using generic variables that are attached to dictionary key value using get()
+calculate_pv(future_value,remaining_months, annual_discount_rate)
+# print output
 print(f"The present value of the loan is: {present_value}")
 
 
