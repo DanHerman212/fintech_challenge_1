@@ -216,26 +216,30 @@ Output this list of inexpensive loans to a csv file
     https://docs.python.org/3/library/csv.html#writer-objects
 
 """
+import csv
+from pathlib import Path
 
 # Set the output header
 header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
 
 # Set the output file path
-output_path = Path("inexpensive_loans.csv")
+csvpath = Path("inexpensive_loans.csv")
 
 # @TODO: Use the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 
-# import csv library and add to pathlib libraty with Path operator
+print("Writing the data to a CSV file...")
 
+# Open the output CSV file path using `with open`
+with open(csvpath, "w") as csvfile:
+    
+    # Create a csvwriter
+    csvwriter = csv.writer(csvfile, delimiter=",")
 
+    # Write the header to the CSV file
+    csvwriter.writerow(header)
 
-
-
-# filename stored in relative path (same folder as py file)
-
-# open CSV writer in write mode
-
-    # csvwriter used to write data directly into the file
-
-
+    # Write the values of inexpensive_loans list to the csv file
+    # as a row in the CSV file.
+    for row in inexpensive_loans:
+        csvwriter.writerow(row.values())
